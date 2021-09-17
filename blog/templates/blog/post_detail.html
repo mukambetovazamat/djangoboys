@@ -1,0 +1,79 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+
+    </div>
+
+
+<di><h1>Добавить комментариий</h1></di>
+<form action="{  url 'comment' pk=post.pk  }" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<!--     <p> {{ form.title }} </p>-->
+<!--     <p> {{ form.text }}    </p>-->
+
+<!--    <input type="text" placeholder="Введите свой никнейм" class="from-control"><br>-->
+<!--    <textarea type="text" placeholder="Введите свой комментарий" class="from-control"> </textarea> <br>-->
+
+    <button type="submit"  class="btn btn-success"> добавить </button>
+
+
+
+</form>
+
+<div>
+    {% for com in comments %}
+  <p> {{com.title}} </p>
+<p> {{com.text}}    </p>
+<p> {{com.published_date}}    </p>
+</div>
+      {% endfor%}
+
+
+
+
+
+
+
+<!--<di><h1>Добавить комментариий</h1></di>-->
+<!--<form method="post" action="{url 'comment' }">-->
+<!--    {% csrf_token %}-->
+<!--     <p> {{form.title}} </p>-->
+<!--     <p> {{form.text}}    </p>-->
+
+<!--    <input type="text" placeholder="Введите свой никнейм" class="from-control"><br>-->
+<!--    <textarea type="text" placeholder="Введите свой комментарий" class="from-control"> </textarea> <br>-->
+<!--    <button type="submit"  class="btn btn-success"> добавить </button>-->
+<!--</form>-->
+
+
+
+<!--    {% for com in comments %}-->
+<!--<p> {{com.title}} </p>-->
+<!--<p> {{com.text}}    </p>-->
+<!--<p> {{com.published_date}}    </p>-->
+
+<!--      {% endfor%}-->
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
